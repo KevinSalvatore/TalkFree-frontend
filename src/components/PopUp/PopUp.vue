@@ -4,7 +4,7 @@
     :style="{backgroundColor: 'rgba(0,0,0,'+opacity+')'}"
     @click.self="hidePopUP"
   >
-    <div class="pop-up-container around-padding" :style="{borderRadius: borderRadius}">
+    <div class="pop-up-container" :style="{borderRadius: borderRadius}">
       <slot />
     </div>
   </div>
@@ -38,6 +38,5 @@ export default {
   right 0
   z-index 999
   .pop-up-container
-    background-color $container-background-color
     width 80%
 </style>

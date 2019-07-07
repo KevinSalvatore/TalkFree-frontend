@@ -1,6 +1,6 @@
 <template>
   <div class="notification-wrapper horizontal-center">
-    <div class="notification-container around-padding box-shadow-border">
+    <div class="notification-container box-shadow-border">
       <slot />
     </div>
   </div>
@@ -25,6 +25,5 @@ export default {
   right 0
   .notification-container
     width 8rem
-    background-color $container-background-color
     border-radius $border-radius-default
 </style>
