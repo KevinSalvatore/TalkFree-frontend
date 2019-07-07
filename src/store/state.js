@@ -1,4 +1,4 @@
 export default {
-  showPopUp: true,
-  showNotification: true
-}
+  showPopUp: false,
+  showNotification: false
+};

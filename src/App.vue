@@ -11,12 +11,12 @@
       leave-active-class="animated bounceOutUp"
       mode="out-in"
     >
-      <notification v-if="hasNotification">
+      <notification v-if="showNotification">
         <p class="notification__content">Notification</p>
       </notification>
     </transition>
     <button @click="showPopUP">ShowPopUp</button>
-    <button @click="hasNotification = !hasNotification">Toggle</button>
+    <button @click="notificationContral">Toggle</button>
     <div class="page">
       <transition
         name="page"
@@ -40,16 +40,11 @@ import FooterGuide from "./components/FooterGuide/FooterGuide";
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 export default {
   name: "App",
-  data() {
-    return {
-      hasNotification: false
-    };
-  },
   computed: {
-    ...mapState(["showPopUp"])
+    ...mapState(["showPopUp", "showNotification"])
   },
   methods: {
-    ...mapActions(["showPopUP"])
+    ...mapActions(["showPopUP", "notificationContral"])
   },
   components: { PopUp, Notification, FooterGuide }
 };
