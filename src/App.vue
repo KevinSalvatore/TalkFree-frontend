@@ -29,7 +29,7 @@
         </keep-alive>
       </transition>
     </div>
-    <footer-guide class="footer-guide" />
+    <footer-guide class="footer-guide" v-show="$route.meta.showFooterGuide" />
   </div>
 </template>
 
