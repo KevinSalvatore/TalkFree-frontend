@@ -61,6 +61,7 @@ export default {
 .footer-guide
   height $footer-guide-height
   justify-content space-around
+  background-color $container-background-color
   .footer-item
     .footer-item__icon
       width .6rem

@@ -69,4 +69,6 @@ export default {
     left 0
     right 0
     bottom 0
+  .page
+    background-color $gap-background-color
 </style>

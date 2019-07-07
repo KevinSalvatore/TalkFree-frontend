@@ -20,7 +20,7 @@ export default {
     },
     borderRadius: {
       type: String,
-      default: ".15rem"
+      default: ".25rem"
     }
   },
   methods: {
@@ -36,9 +36,8 @@ export default {
   bottom 0
   left 0
   right 0
-  background-color #000
   z-index 999
   .pop-up-container
-    background-color #fff
+    background-color $container-background-color
     width 80%
 </style>
