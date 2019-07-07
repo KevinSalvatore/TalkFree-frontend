@@ -2,7 +2,7 @@
   <div
     class="pop-up-wrapper center"
     :style="{backgroundColor: 'rgba(0,0,0,'+opacity+')'}"
-    @click.self="$emit('hide')"
+    @click.self="hidePopUP"
   >
     <div class="pop-up-container around-padding" :style="{borderRadius: borderRadius}">
       <slot />
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   props: {
     opacity: {
@@ -21,6 +22,9 @@ export default {
       type: String,
       default: ".15rem"
     }
+  },
+  methods: {
+    ...mapActions(["hidePopUP"])
   }
 };
 </script>

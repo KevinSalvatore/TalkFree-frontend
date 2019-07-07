@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <transition name="pop-up" mode="out-in">
-      <pop-up v-if="popUpShow" @hide="popUpShow = !popUpShow">
+      <pop-up v-if="showPopUp">
         <p class="pop-up__content">这是一个对话框点击遮盖层可以关闭</p>
       </pop-up>
     </transition>
@@ -15,7 +15,7 @@
         <p class="notification__content">Notification</p>
       </notification>
     </transition>
-    <button @click="popUpShow = true">ShowPopUp</button>
+    <button @click="showPopUP">ShowPopUp</button>
     <button @click="hasNotification = !hasNotification">Toggle</button>
     <div class="page">
       <transition
@@ -37,13 +37,19 @@
 import PopUp from "./components/PopUp/PopUp";
 import Notification from "./components/Notification/Notification";
 import FooterGuide from "./components/FooterGuide/FooterGuide";
+import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 export default {
   name: "App",
   data() {
     return {
-      popUpShow: false,
       hasNotification: false
     };
+  },
+  computed: {
+    ...mapState(["showPopUp"])
+  },
+  methods: {
+    ...mapActions(["showPopUP"])
   },
   components: { PopUp, Notification, FooterGuide }
 };
