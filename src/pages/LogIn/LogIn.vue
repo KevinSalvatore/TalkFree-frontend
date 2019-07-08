@@ -1,10 +1,10 @@
 <template>
   <div class="login-wrapper center">
-    <div class="login-logo vertical-middle animated bounceInDown fast">
+    <div class="login-logo horizontal-center animated bounceInDown fast">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="2rem"
-        height="2rem"
+        width="3rem"
+        height="3rem"
         class="login-logo__icon"
         version="1.1"
         viewBox="0 0 1245 1024"
@@ -13,7 +13,7 @@
         <defs>
           <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stop-color="#2AF598" />
-            <stop offset="100%" stop-color="#eeeeee" />
+            <stop offset="100%" stop-color="#08AEEA" />
           </linearGradient>
         </defs>
         <path
@@ -28,27 +28,27 @@
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="3.75rem"
-        height="1rem"
+        height=".6rem"
         class="login-logo__name"
       >
-        <text x="100%" y="50%" class="logo logo-name-text-1">Talk Free</text>
-        <text x="100%" y="50%" class="logo logo-name-text-2">Talk Free</text>
-        <text x="100%" y="50%" class="logo logo-name-text-3">Talk Free</text>
+        <text x="50%" y="50%" class="logo logo-name-text-1">Talk Free</text>
+        <text x="50%" y="50%" class="logo logo-name-text-2">Talk Free</text>
+        <text x="50%" y="50%" class="logo logo-name-text-3">Talk Free</text>
       </svg>
     </div>
-    <login-container class="animated bounceInDown" />
+    <login-container class="animated bounceInDown login-container" />
   </div>
 </template>
 
 <script>
 import LoginContainer from "./components/LoginContainer/LoginContainer";
 export default {
-  mounted() {
-    const that = this;
-    setTimeout(function() {
-      that.$router.push("/chats");
-    }, 1500);
-  },
+  // mounted() {
+  //   const that = this;
+  //   setTimeout(function() {
+  //     that.$router.push("/chats");
+  //   }, 1500);
+  // },
   components: {
     LoginContainer
   }
@@ -59,29 +59,27 @@ export default {
 .login-wrapper
   width 100%
   height 100%
-  background-color #08AEEA
-  background-image linear-gradient(135deg, #08AEEA 0%, #2AF598 100%)
-  background-image -webkit-linear-gradient(135deg, #08AEEA 0%, #2AF598 100%)
+  background-color #26324A
   .login-logo
     .logo
-      font-size $large-font-size
+      font-size $middle-font-size
       font-weight bold
-      stroke-width .035rem
+      stroke-width 1px
       stroke-dasharray 30% 70%
       animation stroke 4.5s infinite linear
-      text-anchor end
+      fill none
+      text-anchor middle
       dominant-baseline central
     .logo-name-text-1
-      stroke #FF3CAC
-      fill rgba(245, 245, 245, .7)
+      stroke #2AF598
     .logo-name-text-2
-      stroke #784BA0
-      fill none
+      stroke #19D1C1
       animation-delay -1.5s
     .logo-name-text-3
-      stroke #2B86C5
-      fill none
+      stroke #08AEEA
       animation-delay -3s
+  .login-container
+    margin-top .5rem
 @keyframes stroke
   to
     stroke-dashoffset -100%
