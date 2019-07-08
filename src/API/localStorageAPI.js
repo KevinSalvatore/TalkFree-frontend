@@ -1,27 +1,44 @@
-/**
- * 存储localStorage
- */
-var localStorage = window.localStorage;
-export const setStore = (name, content) => {
-  if (!name) return;
-  if (typeof content !== "string") {
-    content = JSON.stringify(content);
+export function storage(type) {
+  let store = undefined;
+  if (!type) {
+    return;
+  } else if (type === "local") {
+    store = window.localStorage;
+  } else if (type === "session") {
+    store = window.sessionStorage;
+  } else {
+    return;
   }
-  localStorage.setItem(name, content);
-};
+  return function (opt) {
 
-/**
- * 获取localStorage
- */
-export const getStore = name => {
-  if (!name) return;
-  return localStorage.getItem(name);
-};
+  }
+  
+  {
+    /**
+     * 存储localStorage
+     */
+    setStore: (name, content) => {
+      if (!name) return;
+      if (typeof content !== "string") {
+        content = JSON.stringify(content);
+      }
+      localStorage.setItem(name, content);
+    },
 
-/**
- * 删除localStorage
- */
-export const removeStore = name => {
-  if (!name) return;
-  localStorage.removeItem(name);
-};
+    /**
+     * 获取localStorage
+     */
+    getStore: name => {
+      if (!name) return;
+      return localStorage.getItem(name);
+    },
+
+    /**
+     * 删除localStorage
+     */
+    removeStore: name => {
+      if (!name) return;
+      localStorage.removeItem(name);
+    }
+  };
+}
