@@ -15,8 +15,8 @@
         <p class="notification__content">Notification</p>
       </notification>
     </transition>
-    <button @click="showPopUP">ShowPopUp</button>
-    <button @click="notificationContral">Toggle</button>
+    <!-- <button @click="showPopUP">ShowPopUp</button>
+    <button @click="notificationContral">Toggle</button>-->
     <div class="page">
       <transition
         name="page"
@@ -29,7 +29,14 @@
         </keep-alive>
       </transition>
     </div>
-    <footer-guide class="footer-guide" v-show="$route.meta.showFooterGuide" />
+    <transition
+      name="notification"
+      enter-active-class="animated fadeInUp faster"
+      leave-active-class="animated fadeOutDown faster"
+      mode="out-in"
+    >
+      <footer-guide class="footer-guide" v-show="$route.meta.showFooterGuide" />
+    </transition>
   </div>
 </template>
 
@@ -37,15 +44,15 @@
 import PopUp from "./components/PopUp/PopUp";
 import Notification from "./components/Notification/Notification";
 import FooterGuide from "./components/FooterGuide/FooterGuide";
-import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   name: "App",
   computed: {
     ...mapState(["showPopUp", "showNotification"])
   },
-  methods: {
-    ...mapActions(["showPopUP", "notificationContral"])
-  },
+  // methods: {
+  //   ...mapActions(["showPopUP", "notificationContral"])
+  // },
   components: { PopUp, Notification, FooterGuide }
 };
 </script>
@@ -60,6 +67,8 @@ export default {
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   color $base-font-color
+  width 100%
+  height 100%
   .pop-up__content, .notification__content
     font-size $middle-font-size
   .footer-guide
@@ -71,4 +80,6 @@ export default {
     bottom 0
   .page
     background-color $gap-background-color
+    width 100%
+    height 100%
 </style>
