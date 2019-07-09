@@ -1,7 +1,7 @@
 <template>
   <div class="input-item-wrapper vertical-middle around-padding item-big-margin">
     <i class="icon" :class="'ion-ios-'+iconName" :style="{fontSize: fontSize, color: color}" />
-    <input :type="inputType" :style="{fontSize: fontSize, color: color}" :placeholder="placeholder" />
+    <input :type="inputType" :style="{fontSize: fontSize, color: color}" :placeholder="placeholder" @input="$emit('valueChange',$event.target.value)"/>
   </div>
 </template>
 

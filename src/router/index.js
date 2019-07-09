@@ -13,7 +13,7 @@ router.beforeEach((to, from, next) => {
   if (to.path === "/login") {
     next();
   } else {
-    if (storage("session")("get")("isLogin")) {
+    if (JSON.parse(storage("session")("get")("isLogin"))) {
       next();
     } else {
       next({

@@ -1,8 +1,17 @@
 <template>
   <div class="login-container-wrapper horizontal-center">
     <div class="input-wrapper">
-      <input-item iconName="person" placeholder="Username" />
-      <input-item iconName="lock" placeholder="Password" inputType="password" />
+      <input-item
+        iconName="person"
+        placeholder="Username"
+        @valueChange="loginDetails.username = $event"
+      />
+      <input-item
+        iconName="lock"
+        placeholder="Password"
+        inputType="password"
+        @valueChange="loginDetails.pwd = $event"
+      />
       <transition
         name="regist-show"
         enter-active-class="animated zoomIn faster"
@@ -14,12 +23,16 @@
           placeholder="Password again"
           inputType="password"
           v-show="showCard === 'RegistCard'"
+          @valueChange="loginDetails.pwdA = $event"
         />
       </transition>
     </div>
 
     <div class="choose-btn">
-      <div class="sub around-padding">{{showCard === "LoginCard" ? 'Sign In' : 'Sign Up'}}</div>
+      <div
+        class="sub around-padding"
+        @click="sub"
+      >{{showCard === "LoginCard" ? 'Sign In' : 'Sign Up'}}</div>
       <p class="more item-margin">
         <span>Forget password?</span>
         <span class="separate">|</span>
@@ -33,12 +46,41 @@
 
 <script>
 import InputItem from "./components/InputItem/InputItem";
+import { storage } from "@/API/storage.js";
 
 export default {
   data() {
     return {
-      showCard: "LoginCard"
+      showCard: "LoginCard",
+      loginDetails: {
+        username: "",
+        pwd: "",
+        pwdA: ""
+      }
     };
+  },
+  methods: {
+    sub() {
+      if (this.showCard === "LoginCard") {
+        let { username, pwd } = this.loginDetails;
+        this.$store.dispatch("newNotification", {
+          head: "Tip",
+          content: "Log in..."
+        });
+        setTimeout(() => {
+          storage("session")("set")("isLogin", true);
+          this.$store.dispatch("newNotification", {
+            head: "Tip",
+            content: "Log in successful!"
+          });
+          this.$router.push("./chats");
+        }, 1000);
+      } else if (this.showCard === "RegistCard") {
+        let { username, pwd, pwdA } = this.loginDetails;
+      } else {
+        return;
+      }
+    }
   },
   components: {
     InputItem

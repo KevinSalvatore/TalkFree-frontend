@@ -1,9 +1,10 @@
 import {
   SHOW_POP_UP,
   HIDE_POP_UP,
-  SHOW_NOTIFICATION,
-  HIDE_NOTIFICATION
+  PUSH_NOTIFICATION,
+  POP_NOTIFICATION
 } from "./mutation-types";
+import moment from "moment";
 
 export default {
   showPopUP({ commit }) {
@@ -12,17 +13,15 @@ export default {
   hidePopUP({ commit }) {
     commit(HIDE_POP_UP);
   },
-  showNotification({ commit }) {
-    commit(SHOW_NOTIFICATION);
-  },
-  hideNotification({ commit }) {
-    commit(HIDE_NOTIFICATION);
-  },
-  notificationContral({ commit, state }) {
-    if (state.showNotification) {
-      commit(HIDE_NOTIFICATION);
-    } else {
-      commit(SHOW_NOTIFICATION);
-    }
+  newNotification({ commit }, details) {
+    commit(PUSH_NOTIFICATION, {
+      ...details,
+      time: moment()
+        .locale("zh-cn")
+        .format("YYYY-MM-DD HH:mm:SSSS")
+    });
+    setTimeout(() => {
+      commit(POP_NOTIFICATION);
+    }, 1500);
   }
 };

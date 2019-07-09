@@ -1,8 +1,8 @@
 import {
   SHOW_POP_UP,
   HIDE_POP_UP,
-  SHOW_NOTIFICATION,
-  HIDE_NOTIFICATION
+  PUSH_NOTIFICATION,
+  POP_NOTIFICATION
 } from "./mutation-types";
 
 export default {
@@ -12,10 +12,10 @@ export default {
   [HIDE_POP_UP](state) {
     state.showPopUp = false;
   },
-  [SHOW_NOTIFICATION](state) {
-    state.showNotification = true;
+  [PUSH_NOTIFICATION](state, details) {
+    state.notifications.unshift(details);
   },
-  [HIDE_NOTIFICATION](state) {
-    state.showNotification = false;
+  [POP_NOTIFICATION](state) {
+    state.notifications.pop();
   }
 };

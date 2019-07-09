@@ -2,19 +2,17 @@
   <div id="app">
     <transition name="pop-up" mode="out-in">
       <pop-up v-if="showPopUp">
-        <p class="pop-up__content">这是一个对话框点击遮盖层可以关闭</p>
+        <p class="pop-up__content around-padding">这是一个对话框点击遮盖层可以关闭</p>
       </pop-up>
     </transition>
-    <transition
+    <!-- <transition
       name="notification"
       enter-active-class="animated bounceInDown"
       leave-active-class="animated bounceOutUp"
       mode="out-in"
-    >
-      <notification v-if="showNotification">
-        <p class="notification__content">Notification</p>
-      </notification>
-    </transition>
+    >-->
+    <notification />
+    <!-- </transition> -->
     <!-- <button @click="showPopUP">ShowPopUp</button>
     <button @click="notificationContral">Toggle</button>-->
     <div class="page">
@@ -48,7 +46,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   name: "App",
   computed: {
-    ...mapState(["showPopUp", "showNotification"])
+    ...mapState(["showPopUp"])
   },
   // methods: {
   //   ...mapActions(["showPopUP", "notificationContral"])
@@ -69,7 +67,7 @@ export default {
   color $base-font-color
   width 100%
   height 100%
-  .pop-up__content, .notification__content
+  .pop-up__content
     font-size $middle-font-size
   .footer-guide
     color $footer-color
