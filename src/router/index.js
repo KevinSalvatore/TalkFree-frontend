@@ -13,7 +13,6 @@ router.beforeEach((to, from, next) => {
   if (to.path === "/login") {
     next();
   } else {
-    console.log("Sending...");
     ajax("/user/token").then(
       data => {
         if (data.success === true) {
@@ -30,14 +29,6 @@ router.beforeEach((to, from, next) => {
         });
       }
     );
-
-    // if (JSON.parse(storage("session")("get")("isLogin"))) {
-    //   next();
-    // } else {
-    // next({
-    //   path: "/login"
-    // });
-    // }
   }
 });
 

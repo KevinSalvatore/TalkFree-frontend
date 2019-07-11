@@ -62,41 +62,77 @@ export default {
   },
   methods: {
     sub() {
-      if (this.showCard === "LoginCard") {
-        let user = {
-          username: this.loginDetails.username,
-          password: this.loginDetails.password
-        };
-
-        ajax("/user/login", user, "POST").then(
-          data => {
-            if (data.success) {
-              storage("session")("set")("token", data.token);
-              this.$router.go(-1);
-            } else {
-              console.log(data.msg);
-            }
-          },
-          err => {
-            console.log(err);
-          }
-        );
-        // this.$store.dispatch("newNotification", {
-        //   head: "Tip",
-        //   content: "Log in..."
-        // });
-        // setTimeout(() => {
-        //   storage("session")("set")("isLogin", true);
-        //   this.$store.dispatch("newNotification", {
-        //     head: "Tip",
-        //     content: "Log in successful!"
-        //   });
-        //   this.$router.push("./chats");
-        // }, 1000);
-      } else if (this.showCard === "RegistCard") {
-        let { username, password, passwordA } = this.loginDetails;
+      if (!this.loginDetails.username) {
+        this.$store.dispatch("newNotification", {
+          head: "Attention",
+          content: "Please input username first!"
+        });
+      } else if (!this.loginDetails.password) {
+        this.$store.dispatch("newNotification", {
+          head: "Attention",
+          content: "Please input your password!"
+        });
       } else {
-        return;
+        if (this.showCard === "LoginCard") {
+          let user = {
+            username: this.loginDetails.username,
+            password: this.loginDetails.password
+          };
+
+          this.$store.dispatch("newNotification", {
+            head: "Tip",
+            content: "Sign in..."
+          });
+          ajax("/user/login", user, "POST").then(
+            data => {
+              if (data.success) {
+                this.$store.dispatch("newNotification", {
+                  head: "Tip",
+                  content: "Sign in successful!"
+                });
+                storage("session")("set")("token", data.token);
+                this.$router.go(-1);
+              } else {
+                this.$store.dispatch("newNotification", {
+                  head: "Attention",
+                  content: data.msg
+                });
+              }
+            },
+            err => {
+              console.log(err);
+            }
+          );
+        } else {
+          let { username, password, passwordA } = this.loginDetails;
+          if (password !== passwordA) {
+            this.$store.dispatch("newNotification", {
+              head: "Attention",
+              content: "The two passwords you typed do not match."
+            });
+          } else {
+            this.$store.dispatch("newNotification", {
+              head: "Tip",
+              content: "Sign up..."
+            });
+            let user = { username, password };
+            ajax("/user/regist", user, "POST").then(data => {
+              if (data.success) {
+                this.$store.dispatch("newNotification", {
+                  head: "Tip",
+                  content: "Welecome to use Free Talk!"
+                });
+                storage("session")("set")("token", data.token);
+                this.$router.go(-1);
+              } else {
+                this.$store.dispatch("newNotification", {
+                  head: "Attention",
+                  content: data.msg
+                });
+              }
+            });
+          }
+        }
       }
     }
   },

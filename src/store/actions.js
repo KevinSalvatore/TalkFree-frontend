@@ -14,6 +14,6 @@ export default {
     });
     setTimeout(() => {
       commit(POP_NOTIFICATION);
-    }, 1500);
+    }, 3000);
   }
 };
