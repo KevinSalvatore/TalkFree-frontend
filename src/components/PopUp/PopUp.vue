@@ -1,30 +1,18 @@
 <template>
-  <div
-    class="pop-up-wrapper center"
-    :style="{backgroundColor: 'rgba(0,0,0,'+opacity+')'}"
-    @click.self="hidePopUP"
-  >
-    <div class="pop-up-container" :style="{borderRadius: borderRadius}">
+  <div class="pop-up-wrapper center" :style="{backgroundColor: 'rgba(0,0,0,'+opacity+')'}">
+    <div class="pop-up-container">
       <slot />
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
 export default {
   props: {
     opacity: {
       type: Number,
       default: 0.6
-    },
-    borderRadius: {
-      type: String,
-      default: ".25rem"
     }
-  },
-  methods: {
-    ...mapActions(["hidePopUP"])
   }
 };
 </script>
@@ -37,6 +25,4 @@ export default {
   left 0
   right 0
   z-index 999
-  .pop-up-container
-    width 80%
 </style>

@@ -1,4 +1,21 @@
 import axios from "axios";
+import { storage } from "./storage.js";
+
+const BASE_URL = "http://localhost:3000/API";
+
+axios.interceptors.request.use(
+  config => {
+    var token = storage("session")("get")("token");
+    if (token) {
+      config.headers.Authorization = token;
+    }
+    console.log(config);
+    return config;
+  },
+  err => {
+    return Promise.reject(err);
+  }
+);
 
 /**
  * @description 请求函数模块封装
@@ -7,6 +24,7 @@ import axios from "axios";
  * @param {String} type 请求方式
  */
 export default function ajax(url, data = {}, type = "GET") {
+  url = BASE_URL + url;
   return new Promise(function(resolve, reject) {
     let promise;
     if (type === "GET") {
@@ -24,7 +42,7 @@ export default function ajax(url, data = {}, type = "GET") {
     }
     promise
       .then(function(response) {
-        resolve(response.data);
+        resolve({ data });
       })
       .catch(function(error) {
         reject(error);

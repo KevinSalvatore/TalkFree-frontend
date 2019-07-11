@@ -10,7 +10,7 @@
         iconName="lock"
         placeholder="Password"
         inputType="password"
-        @valueChange="loginDetails.pwd = $event"
+        @valueChange="loginDetails.password = $event"
       />
       <transition
         name="regist-show"
@@ -23,7 +23,7 @@
           placeholder="Password again"
           inputType="password"
           v-show="showCard === 'RegistCard'"
-          @valueChange="loginDetails.pwdA = $event"
+          @valueChange="loginDetails.passwordA = $event"
         />
       </transition>
     </div>
@@ -47,6 +47,7 @@
 <script>
 import InputItem from "./components/InputItem/InputItem";
 import { storage } from "@/API/storage.js";
+import ajax from "@/API/ajax.js";
 
 export default {
   data() {
@@ -54,29 +55,45 @@ export default {
       showCard: "LoginCard",
       loginDetails: {
         username: "",
-        pwd: "",
-        pwdA: ""
+        password: "",
+        passwordA: ""
       }
     };
   },
   methods: {
     sub() {
       if (this.showCard === "LoginCard") {
-        let { username, pwd } = this.loginDetails;
-        this.$store.dispatch("newNotification", {
-          head: "Tip",
-          content: "Log in..."
-        });
-        setTimeout(() => {
-          storage("session")("set")("isLogin", true);
-          this.$store.dispatch("newNotification", {
-            head: "Tip",
-            content: "Log in successful!"
-          });
-          this.$router.push("./chats");
-        }, 1000);
+        let user = {
+          username: this.loginDetails.username,
+          password: this.loginDetails.password
+        };
+
+        ajax("/user/login", user, "POST").then(
+          data => {
+            if (data.success) {
+              storage("session")("set")("token", data.token);
+            } else {
+              console.log(data.msg);
+            }
+          },
+          err => {
+            console.log(err);
+          }
+        );
+        // this.$store.dispatch("newNotification", {
+        //   head: "Tip",
+        //   content: "Log in..."
+        // });
+        // setTimeout(() => {
+        //   storage("session")("set")("isLogin", true);
+        //   this.$store.dispatch("newNotification", {
+        //     head: "Tip",
+        //     content: "Log in successful!"
+        //   });
+        //   this.$router.push("./chats");
+        // }, 1000);
       } else if (this.showCard === "RegistCard") {
-        let { username, pwd, pwdA } = this.loginDetails;
+        let { username, password, passwordA } = this.loginDetails;
       } else {
         return;
       }

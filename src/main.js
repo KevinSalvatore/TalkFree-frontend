@@ -10,7 +10,11 @@ import "./style/reset.css";
 import "./style/more.css";
 import "./mixin/index.styl";
 
+// import PopUp from "./components/PopUp/PopUp.vue";
+
 Vue.config.productionTip = false;
+
+// Vue.component("PopUp", PopUp);
 
 new Vue({
   el: "#app",
