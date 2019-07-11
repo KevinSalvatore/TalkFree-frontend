@@ -72,6 +72,7 @@ export default {
           data => {
             if (data.success) {
               storage("session")("set")("token", data.token);
+              this.$router.go(-1);
             } else {
               console.log(data.msg);
             }
