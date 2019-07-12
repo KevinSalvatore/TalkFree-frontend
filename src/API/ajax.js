@@ -5,7 +5,7 @@ axios.defaults.baseURL = "http://localhost:3000/API";
 
 axios.interceptors.request.use(
   config => {
-    var token = storage("session")("get")("token");
+    var token = storage("local")("get")("token");
     if (token) {
       config.headers.Authorization = token;
     }

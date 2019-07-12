@@ -1,15 +1,5 @@
 <template>
   <div id="app">
-    <!-- <transition
-      name="pop-up"
-      enter-active-class="animated fadeIn faster"
-      leave-active-class="animated fadeOut faster"
-      mode="out-in"
-    >
-      <pop-up v-if="showPopUp">
-        <p class="pop-up__content around-padding" @click="showPopUp = false">欢迎使用Talk Free!</p>
-      </pop-up>
-    </transition>-->
     <notification />
     <div class="page">
       <transition
@@ -37,19 +27,8 @@
 <script>
 import Notification from "./components/Notification/Notification";
 import FooterGuide from "./components/FooterGuide/FooterGuide";
-import { mapState, mapActions } from "vuex";
 export default {
   name: "App",
-  data() {
-    return {
-      // showPopUp: false
-    };
-  },
-  // mounted() {
-  //   setTimeout(() => {
-  //     this.showPopUp = false;
-  //   }, 1500);
-  // },
   components: { Notification, FooterGuide }
 };
 </script>
@@ -62,10 +41,6 @@ export default {
   color $base-font-color
   width 100%
   height 100%
-  .pop-up__content
-    font-size $middle-font-size
-    background-color #fff
-    border-radius $border-radius-default
   .footer-guide
     color $footer-color
     font-size $mini-font-size

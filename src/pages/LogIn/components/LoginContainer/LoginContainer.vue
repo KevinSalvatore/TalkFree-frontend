@@ -90,7 +90,7 @@ export default {
                   head: "Tip",
                   content: "Sign in successful!"
                 });
-                storage("session")("set")("token", data.token);
+                storage("local")("set")("token", data.token);
                 this.$router.go(-1);
               } else {
                 this.$store.dispatch("newNotification", {
@@ -122,7 +122,7 @@ export default {
                   head: "Tip",
                   content: "Welecome to use Free Talk!"
                 });
-                storage("session")("set")("token", data.token);
+                storage("local")("set")("token", data.token);
                 this.$router.go(-1);
               } else {
                 this.$store.dispatch("newNotification", {
