@@ -3,6 +3,7 @@ import Contacts from "../pages/Contacts/Contacts.vue";
 import Discover from "../pages/Discover/Discover.vue";
 import Me from "../pages/Me/Me.vue";
 import LogIn from "../pages/LogIn/LogIn.vue";
+import Settings from "../pages/Settings/Settings.vue";
 
 export default [
   {
@@ -36,6 +37,10 @@ export default [
   {
     path: "/login",
     component: LogIn
+  },
+  {
+    path: "/settings",
+    component: Settings
   },
   {
     path: "/",

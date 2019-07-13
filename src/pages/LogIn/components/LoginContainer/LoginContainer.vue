@@ -92,7 +92,7 @@ export default {
                   content: "Sign in successful!"
                 });
                 storage("local")("set")("token", data.token);
-                this.$store.dispatch("userInfo/setUserInfo", data.userInfo);
+                storage("local")("set")("userInfo", data.userInfo);
                 this.$router.go(-1);
               } else {
                 this.$store.dispatch("newNotification", {
@@ -129,6 +129,7 @@ export default {
                   content: "Welecome to use Free Talk!"
                 });
                 storage("local")("set")("token", data.token);
+                storage("local")("set")("userInfo", data.userInfo);
                 this.$router.go(-1);
               } else {
                 this.$store.dispatch("newNotification", {
