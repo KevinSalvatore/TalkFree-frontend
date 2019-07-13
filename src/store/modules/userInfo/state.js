@@ -1,3 +1,7 @@
 export default {
-  userName: "Kevin"
+  username: "",
+  avatar: "",
+  gender: "",
+  region: "",
+  slogan: ""
 };

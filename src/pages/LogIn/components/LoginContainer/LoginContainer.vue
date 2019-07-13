@@ -86,11 +86,13 @@ export default {
           ajax("/user/login", user, "POST").then(
             data => {
               if (data.success) {
+                //成功登录
                 this.$store.dispatch("newNotification", {
                   head: "Tip",
                   content: "Sign in successful!"
                 });
                 storage("local")("set")("token", data.token);
+                this.$store.dispatch("userInfo/setUserInfo", data.userInfo);
                 this.$router.go(-1);
               } else {
                 this.$store.dispatch("newNotification", {
@@ -101,6 +103,10 @@ export default {
             },
             err => {
               console.log(err);
+              this.$store.dispatch("newNotification", {
+                head: "Warning",
+                content: "Someing went wrong!!!"
+              });
             }
           );
         } else {
