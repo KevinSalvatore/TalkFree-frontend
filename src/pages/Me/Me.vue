@@ -8,13 +8,21 @@
         </div>
       </div>
     </page-header>
-    <profile-card />
+    <profile-card
+      :avatar="$store.state.userInfo.avatar ? $store.state.userInfo.avatar : defaultAvatar"
+      :username="$store.state.userInfo.username ? $store.state.userInfo.username : ''"
+      :region="$store.state.userInfo.region ? $store.state.userInfo.region : 'Earth'"
+    />
     <div class="item-list">
       <div v-for="(item, index) in items" :key="index" class="entrance vertical-middle item-margin">
         <div class="entrance__left">
           <img :src="item.entranceImg" />
         </div>
-        <router-item :des="item.des" :itemTitle="item.itemTitle" class="entrance__right retina-border-top-bottom"></router-item>
+        <router-item
+          :des="item.des"
+          :itemTitle="item.itemTitle"
+          class="entrance__right retina-border-top-bottom"
+        ></router-item>
       </div>
     </div>
   </div>
@@ -24,10 +32,12 @@
 import PageHeader from "@/components/PageHeader/PageHeader";
 import ProfileCard from "@/components/ProfileCard/ProfileCard";
 import RouterItem from "@/components/RouterItem/RouterItem";
+import { storage } from "@/API/storage.js";
 
 export default {
   data() {
     return {
+      defaultAvatar: require("@/static/images/defaultAvatar.png"),
       items: [
         {
           entranceImg: require("@/static/smallIcons/post.png"),

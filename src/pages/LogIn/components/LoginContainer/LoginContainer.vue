@@ -48,6 +48,7 @@
 import InputItem from "./components/InputItem/InputItem";
 import { storage } from "@/API/storage.js";
 import ajax from "@/API/ajax.js";
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -61,6 +62,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions("userInfo/", ["updateUserInfo"]),
     sub() {
       if (!this.loginDetails.username) {
         this.$store.dispatch("newNotification", {
@@ -93,6 +95,7 @@ export default {
                 });
                 storage("local")("set")("token", data.token);
                 storage("local")("set")("userInfo", data.userInfo);
+                this.updateUserInfo(data.userInfo);
                 this.$router.go(-1);
               } else {
                 this.$store.dispatch("newNotification", {
@@ -130,6 +133,7 @@ export default {
                 });
                 storage("local")("set")("token", data.token);
                 storage("local")("set")("userInfo", data.userInfo);
+                this.updateUserInfo(data.userInfo);
                 this.$router.go(-1);
               } else {
                 this.$store.dispatch("newNotification", {

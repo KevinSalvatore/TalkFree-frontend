@@ -27,8 +27,27 @@
 <script>
 import Notification from "./components/Notification/Notification";
 import FooterGuide from "./components/FooterGuide/FooterGuide";
+import { storage } from "@/API/storage.js";
+import { mapActions } from "vuex";
+
 export default {
   name: "App",
+  mounted() {
+    let userInfo = JSON.parse(storage("local")("get")("userInfo"));
+    if (!userInfo) {
+      userInfo = {
+        username: null,
+        avatar: null,
+        gender: null,
+        region: null,
+        slogan: null
+      };
+    }
+    this.updateUserInfo(userInfo);
+  },
+  methods: {
+    ...mapActions("userInfo/", ["updateUserInfo"])
+  },
   components: { Notification, FooterGuide }
 };
 </script>

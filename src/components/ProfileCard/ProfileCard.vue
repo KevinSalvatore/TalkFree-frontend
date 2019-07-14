@@ -21,23 +21,20 @@
 </template>
 
 <script>
-import { storage } from "@/API/storage.js";
-
 export default {
-  data() {
-    return {
-      avatar: "",
-      username: "",
-      region: ""
-    };
-  },
-  created() {
-    let { avatar, username, region } = JSON.parse(
-      storage("local")("get")("userInfo")
-    );
-    this.avatar = avatar;
-    this.username = username;
-    this.region = region;
+  props: {
+    avatar: {
+      type: String,
+      required: true
+    },
+    username: {
+      type: String,
+      required: true
+    },
+    region: {
+      type: String,
+      required: true
+    }
   }
 };
 </script>

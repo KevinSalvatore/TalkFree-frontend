@@ -29,6 +29,9 @@ export function storage(type) {
           if (!name) return;
           store.removeItem(name);
         };
+      case "clear":
+        store.clear();
+        break;
       default:
         return;
     }
