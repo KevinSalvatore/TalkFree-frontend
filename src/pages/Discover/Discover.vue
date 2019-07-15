@@ -1,6 +1,6 @@
 <template>
   <div class="discover-wrapper">
-    <page-header class="discover__head">
+    <page-header class="discover__head retina-border-bottom">
       <div slot="page-header__left">
         <p>Discover</p>
       </div>

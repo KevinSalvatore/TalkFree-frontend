@@ -1,6 +1,6 @@
 <template>
   <div class="contacts-wrapper">
-    <page-header class="contacts__head">
+    <page-header class="contacts__head retina-border-bottom">
       <div slot="page-header__left">
         <p>Contacts</p>
       </div>

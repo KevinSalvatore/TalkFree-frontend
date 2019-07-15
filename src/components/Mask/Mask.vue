@@ -1,5 +1,5 @@
 <template>
-    <div class="mask-wrapper center" @click.self="$emit('maskClice')">
+    <div class="mask-wrapper center" @click.self="$emit('maskClick')">
       <slot />
     </div>
 </template>

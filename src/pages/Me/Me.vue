@@ -12,6 +12,7 @@
       :avatar="$store.state.userInfo.avatar ? $store.state.userInfo.avatar : defaultAvatar"
       :username="$store.state.userInfo.username ? $store.state.userInfo.username : ''"
       :region="$store.state.userInfo.region ? $store.state.userInfo.region : 'Earth'"
+      @click.native="$router.push('/myprofile')"
     />
     <div class="item-list">
       <div v-for="(item, index) in items" :key="index" class="entrance vertical-middle item-margin">

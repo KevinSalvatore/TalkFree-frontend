@@ -1,6 +1,6 @@
 <template>
   <div class="chats-wrapper">
-    <page-header class="chats__head">
+    <page-header class="chats__head retina-border-bottom">
       <div slot="page-header__left">
         <p>Chats({{newMsgAccount}})</p>
       </div>

@@ -4,6 +4,8 @@ import Discover from "../pages/Discover/Discover.vue";
 import Me from "../pages/Me/Me.vue";
 import LogIn from "../pages/LogIn/LogIn.vue";
 import Settings from "../pages/Settings/Settings.vue";
+import MyProfile from "../pages/MyProfile/MyProfile.vue";
+
 
 export default [
   {
@@ -41,6 +43,10 @@ export default [
   {
     path: "/settings",
     component: Settings
+  },
+  {
+    path: "/myprofile",
+    component: MyProfile
   },
   {
     path: "/",

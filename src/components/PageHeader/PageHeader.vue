@@ -1,5 +1,5 @@
 <template>
-  <div class="page-header-wrapper vertical-middle around-padding retina-border-bottom">
+  <div class="page-header-wrapper vertical-middle around-padding">
     <slot name="page-header__left" />
     <slot name="page-header__right" />
   </div>

@@ -6,8 +6,8 @@
       leave-active-class="animated fadeOut faster"
       mode="out-in"
     >
-      <a-mask v-if="maskShow" @maskClice="maskShow = false">
-        <choose-dialog
+      <a-mask v-if="maskShow" @maskClick="maskShow = false">
+        <choose-dialog class="choose-dialog"
           content="Do you really want to log out?"
           btnRight="Log out"
           btnRightColor="#64EDAC"
@@ -17,7 +17,7 @@
         />
       </a-mask>
     </transition>
-    <page-header class="me__head">
+    <page-header class="me__head retina-border-bottom">
       <div slot="page-header__left" class="vertical-middle">
         <div @click="$router.push('/me')">
           <i class="icon ion-ios-arrow-back"></i>
@@ -77,6 +77,8 @@ export default {
 .settings-wrapper
   .has-margin-right
     margin-left $gap
+  .choose-dialog
+    width 80%
   .page-header-title
     margin-left $big-font-size
   .block
